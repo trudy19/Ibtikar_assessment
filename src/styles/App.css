@@ -1,0 +1,47 @@
+.building-list {
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.building-element {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.building-action>a {
+    color: #000;
+    margin: 0 0 0 10px;
+}
+
+.add-building {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.add-building-link {
+    display: block;
+}
+
+.building-form {
+    position: relative;
+    padding-bottom: 95px;
+}
+
+.buttons-building-form {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.user-list {
+    margin: auto;
+}
+
+@media (min-width: 960px) {
+    .user-list {
+        max-width: 50%;
+    }
+}

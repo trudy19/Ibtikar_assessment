@@ -1,0 +1,82 @@
+label {
+    display: block;
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: normal;
+    line-height: 1.8;
+    color: #0a0a0a;
+}
+
+select {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fefefe;
+    border-radius: 2px;
+    height: 40px;
+    margin: 0 0 15px 0;
+    padding: 5px;
+    border: 1px solid #cacaca;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #0a0a0a;
+}
+
+select:focus {
+    background-color: #f3f3f3;
+    border-color: #999999;
+}
+
+input[type="text"] {
+    border-radius: 0;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #cccccc;
+    color: #444444;
+    display: block;
+    height: 40px;
+    margin: 0 0 15px 0;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s linear, background 0.15s linear;
+}
+
+input[type="text"]:focus {
+    background-color: #fafafa;
+    border-color: #999999;
+    outline: none;
+}
+
+.button {
+    appearance: none;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 0;
+    cursor: pointer;
+    line-height: normal;
+    padding: 12px 16px;
+    font-size: 1rem;
+    z-index: 1;
+    min-width: 90px;
+}
+
+.primary-button {
+    background: #1779ba;
+    border: solid 1px #1779ba;
+    color: white;
+}
+
+.primary-button:hover {
+    color: white;
+}
+
+.cancel-button {
+    background: #fff;
+    border: solid 1px #000;
+}
+
+.cancel-button:hover {
+    color: #000;
+}
