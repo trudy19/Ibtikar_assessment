@@ -43,4 +43,5 @@ edit ,delete building from the building list of current user.
 <br/>
 <p align="center"><img src="https://github.com/trudy19/Ibtikar_assessment/blob/main/ImagesReadme/5.png" alt="Invoker"></p>
 
-### NOTE : use localhost:3000/user to add new user
+### NOTE : 
+use localhost:3000/user to add new user
