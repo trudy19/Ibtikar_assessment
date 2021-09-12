@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useMemo, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import './styles/reset.css';
 import './styles/form.css';
 import './styles/index.css';
 import "./styles/App.css";
-import { createSelector } from "reselect";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 import { useDispatch, useSelector, } from 'react-redux';
 import MapContainer from './component/MapContainer'
 import Frombuild from './component/FormBuilding'
@@ -49,7 +47,7 @@ const App = (props) => {
             <div className="user-list">
                 <label for="user">
                     {<Link
-                        to={{ pathname: "/map", myCustomProps: BuildingList ? BuildingList[0] : null, loading: true }}>
+                        to={{ pathname: "/map", myCustomProps: BuildingList ? BuildingList[0] : null }}>
                         <select id="user" onChange={handleChange}>
                             {activeuser == null && <option value="">Select user</option>}
                             {ClientList && ClientList.map((client, index) => {
@@ -76,7 +74,6 @@ const App = (props) => {
                                         {
                                             pathname: "/map",
                                             myCustomProps: building,
-                                            loading: false
                                         }
                                     }>
                                         {building && <span>{building.buildingname}</span>}

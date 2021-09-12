@@ -1,54 +1,40 @@
-import React, {useState, useEffect} from "react";
-
-import FormGroup from '@material-ui/core/FormGroup';
-import {useDispatch, useSelector} from 'react-redux'
-
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
 import countries from "../Layers/countriesList.json";
-
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import {useHistory} from "react-router-dom";
-
-import Button from '@material-ui/core/Button';
-import {FetchBuilding} from "../Redux/Reducers/BuildingReducers";
-import {CreationbuildingAction, EditbuildingAction, FetchbuildingAction} from "../Redux/Actions/BuildingActions";
-
+import { EditbuildingAction } from "../Redux/Actions/BuildingActions";
 
 export default function EditContainer(props) {
-    const redirect = props.location.search ? props.location.search.split('=')[1] : '/map';
-
     const [form, setForm] = useState({})
     const [activebuilding, setActivebuilding] = useState();
     const [index, setIndex] = useState({})
-
-
     const setField = (field, value) => {
         setForm({
             ...form,
             [field]: value
         })
     }
+    const annuler = (event) => {
+        props.history.push({
+            pathname: "/map",
+            myCustomProps: BuildingList[0],
+        });
+
+    };
 
     const dispatch = useDispatch();
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        // localStorage.setItem('myData', JSON.stringify(form));
         dispatch(EditbuildingAction(props.location.activeuser, index, form));
 
-        props.history.push({            pathname: "/map",
-        myCustomProps: form,});
+        props.history.push({
+            pathname: "/map",
+            myCustomProps: form,
+        });
 
     };
     const [success1, setsuc] = useState(false);
     const temp = useSelector(state => state.buildings);
-    const {BuildingList, success} = temp;
-
+    const { BuildingList, success } = temp;
 
     useEffect(() => {
         if (props.location.myCustomProps) {
@@ -56,8 +42,9 @@ export default function EditContainer(props) {
             setActivebuilding(props.location.myCustomProps)
             setIndex(props.location.index)
             console.log(props.location.index)
-        } else{            props.history.push({            pathname: "/"})
-    }
+        } else {
+            props.history.push({ pathname: "/" })
+        }
 
     }, [props.location.index]);
 
@@ -74,10 +61,11 @@ export default function EditContainer(props) {
                         </div>
                         <div className="column">
                             <input
+                                required
                                 id="buildingname"
                                 type="text"
                                 onInput={e => setField("buildingname", e.target.value)}
-                                Value={props.location.myCustomProps?props.location.myCustomProps.buildingname:""}
+                                Value={props.location.myCustomProps ? props.location.myCustomProps.buildingname : ""}
 
                             />
 
@@ -88,18 +76,18 @@ export default function EditContainer(props) {
                             <label htmlFor="country">Location</label>
                         </div>
                         <div className="column">
-                            <select
+                            <select required
                                 id="country"
                                 onChange={e => setField("country", e.target.value)}
                             >
-                                <option  Value={props.location.myCustomProps?props.location.myCustomProps.buildingname:""}
-                                          >{props.location.myCustomProps?JSON.parse(props.location.myCustomProps.country).name:""}</option>
+                                <option Value={props.location.myCustomProps ? props.location.myCustomProps.buildingname : ""}
+                                >{props.location.myCustomProps ? JSON.parse(props.location.myCustomProps.country).name : ""}</option>
 
                                 {
                                     countries.map((country) => {
                                         return (
                                             <option key={country.id}
-                                                    value={JSON.stringify(country)}>{country.name}</option>)
+                                                value={JSON.stringify(country)}>{country.name}</option>)
                                     })
                                 }
 
@@ -110,7 +98,7 @@ export default function EditContainer(props) {
                         <div className="buttons-building-form">
                             <button
                                 className="button cancel-button semi-round-left"
-                                href="./map"
+                                onClick={()=>annuler()}
                             >
                                 Cancel
                             </button>

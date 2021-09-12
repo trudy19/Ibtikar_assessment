@@ -1,17 +1,13 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from 'react-redux'
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
 import countries from "../Layers/countriesList.json";
+import { CreationbuildingAction } from "../Redux/Actions/BuildingActions";
 
-import {CreationbuildingAction} from "../Redux/Actions/BuildingActions";
-
-
-export default function Frombuild (props)  {
-    const redirect =props.location.search ? props.location.search.split('=')[1] : '/map';
+export default function Frombuild(props) {
+    const redirect = props.location.search ? props.location.search.split('=')[1] : '/map';
 
     const [form, setForm] = useState({})
-    const[activeuser,setactiveuser]=useState();
-
+    const [activeuser, setactiveuser] = useState();
 
     const setField = (field, value) => {
         setForm({
@@ -32,32 +28,25 @@ export default function Frombuild (props)  {
         });
 
     };
+    const annuler = (event) => {
+        props.history.push({
+            pathname: "/map",
+            myCustomProps: BuildingList[0],
+        });
 
+    };
+    const temp = useSelector(state => state.buildings);
+    const { BuildingList, success } = temp;
 
+    useEffect(() => {
+        if (props.location.myCustomProps) {
+            console.log(props.location.myCustomProps)
+            setactiveuser(props.location.myCustomProps)
+        } else {
+            props.history.push({ pathname: "/" })
+        }
 
-    
-
-  const temp = useSelector(state => state.buildings);
-  const { BuildingList,success } = temp;
-
-
-  /*
-  useEffect(()=>{
-    if(success)
-{props.history.push(redirect);}
-  
-  },[success]);
-*/
-
-
-  useEffect(()=>{
-    if(props.location.myCustomProps){
-      console.log(props.location.myCustomProps) 
-      setactiveuser(props.location.myCustomProps)
-    }else{            props.history.push({            pathname: "/"})
-}
- 
-    },[props.location.myCustomProps]);
+    }, [props.location.myCustomProps]);
 
     return (
         <div><h4>Add/Edit Building</h4>
@@ -95,7 +84,7 @@ export default function Frombuild (props)  {
                                     countries.map((country) => {
                                         return (
                                             <option key={country.id}
-                                                    value={JSON.stringify(country)}>{country.name}</option>)
+                                                value={JSON.stringify(country)}>{country.name}</option>)
                                     })
                                 }
 
@@ -106,11 +95,11 @@ export default function Frombuild (props)  {
                         <div className="buttons-building-form">
                             <button
                                 className="button cancel-button semi-round-left"
-                                href="./map"
+                                onClick={() => annuler()}
                             >
                                 Cancel
                             </button>
-                            <button 
+                            <button
                                 className="button primary-button semi-round-right"
                                 type="submit"
                             >
