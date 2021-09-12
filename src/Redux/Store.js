@@ -1,11 +1,7 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
-
-
-import { CreationBuildingReducer, DelelteBuilding, FetchBuilding } from "./Reducers/BuildingReducers";
+import {  DelelteBuilding, FetchBuilding } from "./Reducers/BuildingReducers";
 import { FetchuserReducer } from "./Reducers/UserReducers";
-
-
 
 const initialState = {
 

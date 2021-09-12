@@ -9,46 +9,9 @@ import { fromLonLat, get } from "ol/proj";
 import GeoJSON from "ol/format/GeoJSON";
 import FeatureStyles from "../Features/Styles";
 import mapConfig from "../config.json";
-import countries from "../Layers/countriesList.json";
-import FormGroup from '@material-ui/core/FormGroup';
 import { useDispatch, useSelector } from 'react-redux'
-import { Tooltip } from '@material-ui/core';
-
-import { BUILDING_CLEAN } from "../Redux/types";
-
-
-//let markersLonLat=[]
-
 
 const geojsonObject = mapConfig.geojsonObject;
-
-/*
-function addMarkers(lonLatArray) {
-
-  let country =JSON.parse(lonLatArray.country);
-  var iconStyle = new Style({
-    image: new Icon({
-      anchorXUnits: "fraction",
-      anchorYUnits: "pixels",
-      src: mapConfig.markerImage32,
-    }),
-  });
-    markersLonLat = [country.position[0],country.position[1]];
-  console.log(markersLonLat)
-
-  let feature = new Feature({
-    geometry: new Point(fromLonLat([-94.579228, 39.135386])),
-  });
-  feature.setStyle(iconStyle);
-  console.log(feature)
-
-
-  return feature;
-}
-*/
-
-
-
 const markersLonLat = [mapConfig.kansasCityLonLat];
 function addMarkers(lonLatArray) {
   var iconStyle = new Style({
@@ -87,7 +50,7 @@ export default function MapContainer(props) {
 
   useEffect(async () => {
 
-    if ( props.location.myCustomProps) {
+    if (props.location.myCustomProps) {
       setActivebuilding(props.location.myCustomProps)
 
       let country = JSON.parse(props.location.myCustomProps.country);
