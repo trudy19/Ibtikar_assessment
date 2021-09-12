@@ -69,7 +69,7 @@ const App = (props) => {
                 {display && <div className="column tab_6 mob_24 flex_0_0_auto">
                     <h4>Buildings</h4>
                     <div className="panel building-list equalHeight">
-                        {BuildingList == null && BuildingList == undefined ? <CircularProgress /> : <div>{BuildingList.map((building, index) => {
+                        {BuildingList == null && BuildingList == undefined ? <div className="progress_bar"><CircularProgress/></div> : <div>{BuildingList.map((building, index) => {
                             return (
                                 <div className="building-element">
                                     <Link to={
@@ -96,12 +96,12 @@ const App = (props) => {
                                             <span href={''}><i className='far fa-edit'></i></span>
                                         </Link>
                                         <Link to="./map">
-                                            <a key={index} onClick={() => {
+                                            <span key={index} onClick={() => {
                                                 console.log("button");
 
                                                 dispatch(deletebuilding(activeuser, index))
                                             }}><i className='far fa-trash-alt'></i>
-                                            </a>
+                                            </span>
                                         </Link>
 
                                     </div>
